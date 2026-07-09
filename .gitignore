@@ -1,0 +1,12 @@
+/build/
+/dist/
+/nbproject/private/
+*.class
+
+# Database credentials
+db.properties
+.env
+
+# IDE/editor files
+.idea/
+.vscode/
