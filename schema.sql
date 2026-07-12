@@ -69,3 +69,16 @@ INSERT INTO inventory_issuances (item_id, issued_to, campus_location, quantity_i
 (1, 'Thabo Khumalo', 'Campus Block A - Main Hall', 2, 'Routine weekly deep clean'),
 (2, 'Sarah Smith', 'Student Residences - Ground Floor', 3, 'Regular turnover stock'),
 (4, 'Thabo Khumalo', 'Science Lab 3', 1, 'Chemical spill cleanup supply');
+
+-- Create the cleaners table
+CREATE TABLE cleaners (
+    cleaner_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(15),
+    assigned_area VARCHAR(100)
+);
+
+-- Seed some dummy data
+INSERT INTO cleaners (first_name, last_name, phone_number, assigned_area) 
+VALUES ('John', 'Doe', '0123456789', 'Main Library');
