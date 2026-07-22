@@ -70,4 +70,19 @@ public class MaterialController {
             return false;
         }
     }
+    
+    public boolean isLowStock(Materials m) {
+        return m.getQuantity_in_stock() <= m.getReorder_level();
+}
+
+// Returns only the materials that are currently low on stock
+public List<Materials> getLowStockMaterials() {
+            List<Materials> lowStock = new java.util.ArrayList<>();
+            for (Materials m : getAllMaterials()) {
+                if (isLowStock(m)) {
+                    lowStock.add(m);
+                }
+            }
+            return lowStock;
+        }
 }
