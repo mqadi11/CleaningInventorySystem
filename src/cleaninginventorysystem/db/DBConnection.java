@@ -2,6 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * Creates and manages connections to the PostgreSQL database.
+ *
+ * @author Mkhanyisi Mqadi
+ */
 package cleaninginventorysystem.db;
 
 import java.io.IOException;

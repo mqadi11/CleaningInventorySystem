@@ -2,6 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * Handles database operations related to users.
+ *
+ * @author Mkhanyisi Mqadi
+ */
 package cleaninginventorysystem.dao;
 
 import cleaninginventorysystem.db.DBConnection;
