@@ -4,44 +4,35 @@
  */
 package cleaninginventorysystem.model;
 
+import java.sql.Timestamp;
+
 public class User {
 
-    private int userID;
-    private String fullName;
+    private int userId;
     private String username;
-    private String email;
-    private String password;
+    private String passwordHash;
     private String role;
+    private Timestamp createdAt;
 
     public User() {
-
     }
 
-    public User(int userID, String fullName, String username,
-                String email, String password, String role) {
+    public User(int userId, String username, String passwordHash,
+                String role, Timestamp createdAt) {
 
-        this.userID = userID;
-        this.fullName = fullName;
+        this.userId = userId;
         this.username = username;
-        this.email = email;
-        this.password = password;
+        this.passwordHash = passwordHash;
         this.role = role;
+        this.createdAt = createdAt;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -52,20 +43,12 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public String getRole() {
@@ -74,5 +57,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }
