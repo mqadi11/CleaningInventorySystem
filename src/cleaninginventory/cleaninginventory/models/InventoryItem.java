@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cleaninginventory.cleaninginventory.models;
 
 public class InventoryItem {
@@ -15,7 +11,7 @@ public class InventoryItem {
     // Default Constructor
     public InventoryItem() {}
 
-    // Parameterized Constructor for pulling existing data from the DB
+    // Parameterized Constructor
     public InventoryItem(int itemId, String itemName, String category, int quantityAvailable, int minimumStockLevel, String unitOfMeasure) {
         this.itemId = itemId;
         this.itemName = itemName;
@@ -44,13 +40,8 @@ public class InventoryItem {
     public String getUnitOfMeasure() { return unitOfMeasure; }
     public void setUnitOfMeasure(String unitOfMeasure) { this.unitOfMeasure = unitOfMeasure; }
 
-    // Helper method to easily check if we need to order more supplies
+    // Helper method for low stock alert
     public boolean isLowStock() {
         return this.quantityAvailable <= this.minimumStockLevel;
-    }
-
-    @Override
-    public String toString() {
-        return itemName + " (" + quantityAvailable + " " + unitOfMeasure + " left)";
     }
 }
