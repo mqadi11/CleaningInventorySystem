@@ -1,0 +1,88 @@
+
+package cleaning.inventory.system.Controller;
+import cleaninginventory.cleaninginventory.dao.MaterialsDAO;
+import cleaninginventorysystem.model.Materials;
+import java.sql.SQLException;
+import java.util.List;
+
+public class MaterialController {
+    private final MaterialsDAO materialsDAO;
+
+    public MaterialController() {
+        this.materialsDAO = new MaterialsDAO();
+    }
+
+    // CREATE
+    public boolean addMaterial(String name, int quantityInStock, int reorderLevel, Integer supplierId, String description) {
+        if (name == null || name.trim().isEmpty()) return false;
+        if (quantityInStock < 0 || reorderLevel < 0) return false; // business rule lives here
+
+        try {
+            materialsDAO.addMaterial(new Materials(name, quantityInStock, reorderLevel, supplierId, description));
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error adding material: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // READ ALL
+    public List<Materials> getAllMaterials() {
+        try {
+            return materialsDAO.getAllMaterials();
+        } catch (SQLException e) {
+            System.err.println("Error fetching materials: " + e.getMessage());
+            return List.of();
+        }
+    }
+
+    // READ ONE
+    public Materials getMaterialById(int id) {
+        try {
+            return materialsDAO.getMaterialById(id);
+        } catch (SQLException e) {
+            System.err.println("Error fetching material: " + e.getMessage());
+            return null;
+        }
+    }
+
+    // UPDATE
+    public boolean updateMaterial(Materials m) {
+        if (m.getName() == null || m.getName().trim().isEmpty()) return false;
+        if (m.getQuantity_in_stock() < 0 || m.getReorder_level() < 0) return false;
+
+        try {
+            materialsDAO.updateMaterial(m);
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error updating material: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // DELETE
+    public boolean deleteMaterial(int id) {
+        try {
+            materialsDAO.deleteMaterial(id);
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error deleting material: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean isLowStock(Materials m) {
+        return m.getQuantity_in_stock() <= m.getReorder_level();
+}
+
+// Returns only the materials that are currently low on stock
+public List<Materials> getLowStockMaterials() {
+            List<Materials> lowStock = new java.util.ArrayList<>();
+            for (Materials m : getAllMaterials()) {
+                if (isLowStock(m)) {
+                    lowStock.add(m);
+                }
+            }
+            return lowStock;
+        }
+}
