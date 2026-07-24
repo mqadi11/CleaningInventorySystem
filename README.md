@@ -91,7 +91,7 @@ Core tables (see `schema.sql` for full definitions):
    db.user=postgres
    db.password=your_local_password
    ```
-   > **Note:** `db.properties` is excluded from version control (see `.gitignore`) since credentials are specific to each developer's local machine. Only `db.properties.example` is committed to the shared repository.
+ **Note:** `db.properties` is excluded from version control (see `.gitignore`) since credentials are specific to each developer's local machine. Only `db.properties.example` is committed to the shared repository.
 
 ### 4. Run the Project
 1. Open the project in NetBeans (**File → Open Project**).
@@ -105,8 +105,7 @@ Core tables (see `schema.sql` for full definitions):
 |---|---|
 | Materials Management (CRUD) | Mutshidzi Nduvheni |
 | Suppliers Management (CRUD) | Mutshidzi Nduvheni |
-| User Authentication | Mkhanyisi Mqadi
- |
+| User Authentication | Mkhanyisi Mqadi|
 | Dashboard | Roebin Uys |
 | Cleaners Management (CRUD) | Gontse Moleijane |
 | Stock Issuance Management (CRUD) | Roebin Uys |
