@@ -5,7 +5,8 @@
 package cleaninginventory.cleaninginventory;
 import cleaninginventory.cleaninginventory.models.InventoryItem;
 import cleaninginventory.cleaninginventory.dao.InventoryItemDAO;
-
+import cleaninginventorysystem.util.Session;
+import cleaninginventorysystem.ui.LoginFrame;
 
 
 /**
@@ -130,6 +131,7 @@ private void loadInventoryData() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        Session.logout();
         new LoginFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed

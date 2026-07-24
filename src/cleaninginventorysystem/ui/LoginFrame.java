@@ -179,6 +179,7 @@ if (user != null) {
         + "\nRole: " + user.getRole()
 );
 
+new cleaninginventory.cleaninginventory.DashboardFrame().setVisible(true);
 this.dispose();
 
 } else {
