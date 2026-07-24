@@ -3,11 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package cleaninginventory.cleaninginventory;
+import cleaninginventory.cleaninginventory.models.InventoryItem;
+import cleaninginventory.cleaninginventory.dao.InventoryItemDAO;
+import cleaninginventorysystem.util.Session;
+import cleaninginventorysystem.ui.LoginFrame;
+
 
 /**
  *
  * @author roebssie
  */
+
 public class DashboardFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFrame.class.getName());
@@ -20,30 +26,31 @@ public DashboardFrame() {
         loadInventoryData();
     }
 
-    private void loadInventoryData() {
-        // Set up the columns to match your cleaning stock table exactly
-        String[] columnNames = {"ID", "Item Name", "Category", "Quantity", "Min Level", "Unit"};
-        java.util.List<cleaninginventory.cleaninginventory.models.InventoryItem> items = 
-                new cleaninginventory.cleaninginventory.dao.InventoryItemDAO().getAllInventoryItems();
-        
-        // Build the table model
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(columnNames, 0);
-        
-        for (cleaninginventory.cleaninginventory.models.InventoryItem item : items) {
-            Object[] row = {
-                item.getItemId(),
-                item.getItemName(),
-                item.getCategory(),
-                item.getQuantityAvailable(),
-                item.getMinimumStockLevel(),
-                item.getUnitOfMeasure()
-            };
-            model.addRow(row);
+private void loadInventoryData() {
+    String[] columnNames = {"ID", "Item Name", "Category", "Quantity", "Min Level", "Unit"};
+    java.util.List<InventoryItem> items = new InventoryItemDAO().getAllInventoryItems();
+
+    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(columnNames, 0);
+
+    for (InventoryItem item : items) {
+        String nameToDisplay = item.getItemName();
+        if (item.isLowStock()) {
+            nameToDisplay = "⚠️ " + nameToDisplay + " (LOW STOCK)";
         }
-        
-        // Attach the data to your GUI table
-        tblInventory.setModel(model);
+
+        Object[] row = new Object[] {
+            item.getItemId(),
+            nameToDisplay,
+            item.getCategory(),
+            item.getQuantityAvailable(),
+            item.getMinimumStockLevel(),
+            item.getUnitOfMeasure()
+        };
+        model.addRow(row);
     }
+    tblInventory.setModel(model);
+}
+
    
     
 
@@ -124,6 +131,7 @@ public DashboardFrame() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        Session.logout();
         new LoginFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
