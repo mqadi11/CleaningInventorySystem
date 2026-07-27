@@ -1,8 +1,12 @@
 package cleaninginventorysystem;
 
+import cleaninginventorysystem.ui.LoginFrame;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Cleaning Inventory System started.");
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginFrame().setVisible(true);
+        });
     }
 }
